@@ -18,7 +18,7 @@ namespace Calculator.API.Controllers
         {
             try
             {
-                return Ok(calculationService.Calculate(calculation));
+                return Ok(new { result = calculationService.Calculate(calculation) });
             }
             catch (ArgumentException aex)
             {

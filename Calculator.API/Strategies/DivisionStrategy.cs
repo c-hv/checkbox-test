@@ -4,7 +4,7 @@ using Calculator.API.Models;
 
 namespace Calculator.API.Strategies
 {
-    [Operation("Division", "/", "Divides the first operand by the second.", Operator.Divide)]
+    [Operation("Division", "/", "Divides the first operand by the second.", 2)]
     public class DivisionStrategy : ICalculationStrategy
     {
         public decimal Calculate(decimal[] operands)
@@ -15,7 +15,7 @@ namespace Calculator.API.Strategies
             }
             if (operands[1] == 0)
             {
-                throw new InvalidOperationException("Division by zero is not allowed.");
+                throw new ArgumentException("Division by zero is not allowed.");
             }
             return operands[0] / operands[1];
         }

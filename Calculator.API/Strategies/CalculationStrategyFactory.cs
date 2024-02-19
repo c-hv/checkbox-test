@@ -5,15 +5,16 @@ namespace Calculator.API.Strategies
 {
     public class CalculationStrategyFactory
     {
-        public static ICalculationStrategy GetStrategy(Operator op)
+        public static ICalculationStrategy GetStrategy(string op)
         {
             return op switch
             {
-                Operator.Add => new AdditionStrategy(),
-                Operator.Subtract => new SubtractionStrategy(),
-                Operator.Multiply => new MultiplicationStrategy(),
-                Operator.Divide => new DivisionStrategy(),
-                Operator.Exponent => new ExponentStrategy(),
+                "+" => new AdditionStrategy(),
+                "-" => new SubtractionStrategy(),
+                "*" => new MultiplicationStrategy(),
+                "/" => new DivisionStrategy(),
+                "^" => new ExponentStrategy(),
+                "sqrt" => new SquareRootStrategy(),
                 _ => throw new ArgumentException("Unsupported operator")
             };
         }

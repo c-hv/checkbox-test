@@ -16,6 +16,13 @@ namespace Calculator.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+                options.AddDefaultPolicy(policyBuilder =>
+                    policyBuilder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                    ));
 
             RegisterCalculationStrategies(builder.Services);
             RegisterCalculationServices(builder.Services);
@@ -31,8 +38,9 @@ namespace Calculator.API
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseCors();
 
             app.Run();
         }

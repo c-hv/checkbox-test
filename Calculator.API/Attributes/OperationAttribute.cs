@@ -3,11 +3,19 @@
 namespace Calculator.API.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class OperationAttribute(string name, string symbol, string description, Operator @operator) : Attribute
+    public class OperationAttribute() : Attribute
     {
-        public string Name { get; } = name;
-        public string Symbol { get; } = symbol;
-        public string Description { get; } = description;
-        public Operator Operator { get; } = @operator;
+        public OperationAttribute(string name, string symbol, string description, int maxOperands = 100) : this()
+        {
+            Name = name;
+            Symbol = symbol;
+            Description = description;
+            MaxOperands = maxOperands;
+        }
+
+        public string Name { get; }
+        public string Symbol { get; }
+        public string Description { get; }
+        public int MaxOperands { get; }
     }
 }

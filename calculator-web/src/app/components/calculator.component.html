@@ -1,0 +1,45 @@
+<div class="calculator max-w-sm mx-auto p-6 bg-white shadow-lg rounded-lg">
+  <h2 class="font-bold text-xl mb-4 text-center">Calculator</h2>
+
+  <!-- Dropdown for Selecting Operation -->
+  <div class="mb-4">
+    <label for="operation" class="block text-gray-700 text-sm font-bold mb-2">Operation:</label>
+    <select id="operation" class="block w-full bg-white border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:border-blue-500" [(ngModel)]="selectedOperation" (ngModelChange)="onOperationChange()">
+      <option *ngFor="let operation of operations" [ngValue]="operation">
+        {{ operation.symbol }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Operands -->
+  <div *ngFor="let operandModel of operandModels; let i = index" class="mb-4">
+    <label for="operand{{i}}" class="block text-gray-700 text-sm font-bold mb-2">Operand {{i + 1}}:</label>
+    <input id="operand{{i}}" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" [(ngModel)]="operandModel.value">
+  </div>
+
+  <!-- Add Operand Button -->
+  <button *ngIf="canAddOperand()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none mb-4" (click)="addOperand()">Add Operand</button>
+
+  <!-- Button Container -->
+  <div class="flex w-full space-x-2">
+    <!-- Calculate Button (70% width) -->
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-grow flex-shrink basis-7/12" (click)="onCalculate()">
+      Calculate
+    </button>
+
+    <!-- Reset Button (30% width) -->
+    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex-grow flex-shrink" (click)="resetOperandsToZero()">
+      Reset
+    </button>
+  </div>
+
+  <!-- Display Result -->
+  <div *ngIf="result !== null" class="mt-4 p-2 bg-green-100 text-green-800 rounded">
+    Result: <strong>{{ result }}</strong>
+  </div>
+
+  <!-- Display Error Message -->
+  <div *ngIf="errorMessage !== null" class="mt-4 p-2 bg-red-100 text-red-800 rounded">
+    {{ errorMessage }}
+  </div>
+</div>

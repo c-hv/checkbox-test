@@ -1,10 +1,9 @@
 ﻿using Calculator.API.Attributes;
 using Calculator.API.Contracts;
-using Calculator.API.Models;
 
 namespace Calculator.API.Strategies
 {
-    [Operation("Exponent", "^", "Raises the first operand to the power of the second operand.", Operator.Exponent)]
+    [Operation("Exponent", "^", "Raises the first operand to the power of the second operand.", 2)]
     public class ExponentStrategy : ICalculationStrategy
     {
         public decimal Calculate(decimal[] operands)

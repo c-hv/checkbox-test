@@ -4,7 +4,7 @@ using Calculator.API.Models;
 
 namespace Calculator.API.Strategies
 {
-    [Operation("Addition", "+", "Adds all the operands together.", Operator.Add)]
+    [Operation("Addition", "+", "Adds all the operands together.")]
     public class AdditionStrategy : ICalculationStrategy
     {
         public decimal Calculate(decimal[] operands)

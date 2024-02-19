@@ -19,8 +19,7 @@ namespace Calculator.API.Services
                 var attribute = type.GetCustomAttribute<OperationAttribute>();
                 if (attribute != null)
                 {
-                    yield return new AvailableOperation(attribute.Name, attribute.Description, attribute.Symbol,
-                        attribute.Operator);
+                    yield return new AvailableOperation(attribute.Name, attribute.Description, attribute.Symbol, attribute.MaxOperands);
                 }
             }
         }
